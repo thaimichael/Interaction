@@ -21,7 +21,7 @@
 					}
 				],
 				"material": "minecraft:stone",
-				"radius": 16,
+				"radius": 20,
 				"height": 3
 			},
 			"cluster-count": 1,
@@ -36,17 +36,31 @@
 				[
 					{
 						"type": "dictionary",
-						"entry": 
-						[
-							"MOUNTAIN",
-							"HILLS",
-							"SAVANNA",
-							"COLD"
-						]
+						"entry": "MOUNTAIN"
 					},
 					{
-						"type": "name",
-						"entry": "Crag Cliffs"
+						"type": "dictionary",
+						"entry": "HILLS"
+					},
+					{
+						"type": "dictionary",
+						"entry": "SAVANNA"
+					},
+					{
+						"type": "dictionary",
+						"entry": "COLD"
+					},
+					{
+						"type": "id",
+						"entry": "crag_cliffs"
+					},
+					{
+						"type": "id",
+						"entry": "cliffs"
+					},
+					{
+						"type": "id",
+						"entry": "canyon"
 					}
 				]
 			},
@@ -139,14 +153,16 @@
 				[
 					{
 						"type": "dictionary",
-						"entry":
-						[
-							"FOREST",
-							"PLAINS",
-							"SWAMP"
-						]
+						"entry": "SWAMP"
 					},
-
+					{
+						"type": "dictionary",
+						"entry": "PLAINS"
+					},
+					{
+						"type": "dictionary",
+						"entry": "FOREST"
+					}
 				]
 			},
 			"dimension": 
@@ -282,7 +298,7 @@
 				[
 					{
 						"name": "minecraft:gold_ore",
-						"weight": 25
+						"weight": 35
 					},
 					{
 						"name": "minecraft:iron_ore",
@@ -290,7 +306,7 @@
 					},
 					{
 						"name": "minecraft:stone",
-						"weight": 50
+						"weight": 40
 					}
 				],
 				"material": "minecraft:stone",

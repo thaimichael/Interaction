@@ -4,12 +4,17 @@
     {
       "dim": 0,
       "override":true,
-      "worldinfo_onetime":
+      "dimensiontype":
+      {
+        "worldprovider": "WorldProviderSurfaceJED"
+      },
+      "worldinfo":
       {
         "GameRules": 
         {
           "tfEnforcedProgression": "false",
-          "doNaturalRegen": "false"
+          "doNaturalRegen": "false",
+          "naturalRegeneration": "false"
         }
       },
       "jed": 
@@ -21,14 +26,20 @@
     {
       "dim": 7,
       "override":true,
-      "worldinfo_onetime":
+      "worldinfo":
       {
         "GameRules":
         {
           "doWeathercycle": "false",
-          "doNaturalRegen": "false"
+          "doNaturalRegen": "false",
+          "naturalRegeneration": "false"
         }
-      }
+      },
+      "jed":
+        {
+          "CanRespawnHere": false,
+          "RespawnDimension": 100
+        }
     },
     {
       "dim": 100,
@@ -37,12 +48,13 @@
       {
         "worldprovider": "WorldProviderSurfaceJED"
       },
-      "worldinfo_onetime": 
+      "worldinfo": 
       {
         "GameRules":         
         {
           "doWeatherCycle": "false",
-          "doNaturalRegen": "true"
+          "doNaturalRegen": "true",
+          "naturalRegeneration": "true"
         }
       }
     }

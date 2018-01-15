@@ -42,19 +42,30 @@ recipes.remove(<silentgems:leggings>);
 recipes.remove(<silentgems:boots>);
 recipes.remove(<silentgems:helmet>);
 recipes.remove(<silentgems:chestplate>);
+
 	#Polisher
 recipes.remove(<sgextraparts:polisher>);
 recipes.addShaped(<sgextraparts:polisher>, [
-	[<minecraft:log>, <minecraft:log>],
-	[<minecraft:stick>, <minecraft:stick>]]);
+  [<ore:logWood>, <ore:logWood>, null],
+  [<ore:stick>, <ore:stick>, null]]);
 	#Enchantment Token - Holding
 recipes.addShaped(<silentgems:enchantmenttoken>.withTag({TokenEnchantments: [{lvl: 1 as short, name: "cofhcore:holding"}]}), [
 	[<actuallyadditions:block_giant_chest>, <actuallyadditions:block_giant_chest>, <actuallyadditions:block_giant_chest>],
 	[<actuallyadditions:block_giant_chest>, <minecraft:glowstone>, <actuallyadditions:block_giant_chest>],
 	[<actuallyadditions:block_giant_chest>, <actuallyadditions:block_giant_chest>, <actuallyadditions:block_giant_chest> ]]);
+
+
+
+
 	#Torch Bandolier
 recipes.removeShaped(<silentgems:torchbandolier:1024>);
 recipes.addShaped(<silentgems:torchbandolier:1024>, [
 	[<ore:leather>, <ore:leather>, <ore:leather>],
 	[<ore:stickWood>, <actuallyadditions:block_giant_chest>, <ore:stickWood>],
 	[<ore:leather>, <ore:leather>, <ore:leather>]]);
+	#Iron Rod
+recipes.remove(<silentgems:craftingmaterial:7>);
+recipes.addShaped(<silentgems:craftingmaterial:7>*3,[
+	[<ore:ingotIron>, <ore:nuggetGem>, <ore:ingotIron>],
+	[<ore:ingotIron>, <ore:nuggetGem>, <ore:ingotIron>],
+	[<ore:ingotIron>, <ore:nuggetGem>, <ore:ingotIron>]]);

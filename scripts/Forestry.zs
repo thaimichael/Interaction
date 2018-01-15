@@ -1,85 +1,113 @@
 import crafttweaker.item.IItemStack;
 import crafttweaker.item.IIngredient;
 import crafttweaker.oredict.IOreDictEntry;
-import mods.forestry.Carpenter as carp;
-import mods.forestry.ThermionicFabricator as tf;
+import crafttweaker.data.IData;
 
-var QAC = <skyresources:baseitemcomponent:6>;
+var tinCableInsulatedIC2 = <ic2:cable:4>.withTag({type: 4 as byte, insulation: 1 as byte});
+var copCableInsultedIC2 = <ic2:cable>.withTag({type: 0 as byte, insulation: 1 as byte});
 
-//Casings
-recipes.remove(<minecraft:minecart>);
-recipes.remove(<forestry:sturdy_machine>);
-recipes.addShaped(<minecraft:minecart>, [
-	[<ore:plateIron>, null, <ore:plateIron>],
-	[<ore:plateIron>,<ore:plateIron>,<ore:plateIron>]]);
-recipes.addShaped(<forestry:sturdy_machine>, [
-	[<ore:plateBrass>,<ore:plateBrass>,<ore:plateBrass>],
-	[<ore:plateBrass>,<minecraft:minecart>,<ore:plateBrass>],
-	[<ore:plateBrass>,<ore:plateBrass>,<ore:plateBrass>]]);
+	#Basic Circuit Board
+mods.forestry.Carpenter.removeRecipe(<forestry:chipsets>);
+recipes.addShaped(<forestry:chipsets>, [
+	[tinCableInsulatedIC2, tinCableInsulatedIC2, tinCableInsulatedIC2],
+	[<ore:plateTin>, <ore:plateTin>, <ore:plateTin>],
+	[tinCableInsulatedIC2, tinCableInsulatedIC2, tinCableInsulatedIC2]]);
+mods.forestry.Carpenter.addRecipe(<forestry:chipsets>, [
+	[null, null, null],
+	[<ore:plateTin>, <ore:plateTin>, <ore:plateTin>],
+	[null, null, null]], 40, <liquid:menrilresin>*1000);
+	#Enhanced Circuit Board
+mods.forestry.Carpenter.removeRecipe(<forestry:chipsets:1>);
+recipes.addShaped(<forestry:chipsets:1>, [
+	[copCableInsultedIC2, copCableInsultedIC2, copCableInsultedIC2],
+	[<ore:plateBronze>, <ore:plateBronze>, <ore:plateBronze>],
+	[copCableInsultedIC2, copCableInsultedIC2, copCableInsultedIC2]]);
+mods.forestry.Carpenter.addRecipe(<forestry:chipsets:1>, [
+	[null, null, null],
+	[<ore:plateBronze>, <ore:plateBronze>, <ore:plateBronze>],
+	[null, null, null]], 40, <liquid:menrilresin>*1000);
+	#Carpenter
 recipes.remove(<forestry:carpenter>);
 recipes.addShaped(<forestry:carpenter>, [
 	[<ore:plateBronze>, <ore:blockGlass>, <ore:plateBronze>],
 	[<ore:plateBronze>, <forestry:sturdy_machine>, <ore:plateBronze>],
-	[<ore:plateBronze>, <skyresources:combustionheater:3>, <ore:plateBronze>]]);
+	[<ore:plateBronze>, <forestry:chipsets>, <ore:plateBronze>]]);
+	#Multifarm Materials
+var farmMaterials as IItemStack[] = [
+	<minecraft:stonebrick>,
+	<minecraft:stonebrick:1>,
+	<minecraft:stonebrick:2>,
+	<minecraft:brick_block>,
+	<minecraft:sandstone:2>,
+	<minecraft:sandstone:1>,
+	<minecraft:nether_brick>,
+	<minecraft:stonebrick:3>,
+	<minecraft:quartz_block>,
+	<minecraft:quartz_block:1>,
+	<minecraft:quartz_block:2>];
+	#Farm Block
+recipes.remove(<forestry:ffarm>);
+for i in 0 to 11 {
+	var tag as IData = { FarmBlock: i };
+	recipes.addShaped(<forestry:ffarm>.withTag(tag), [
+		[null, null, null],
+		[<ore:stickIron>, farmMaterials[i], <ore:stickIron>],
+		[null, <forestry:thermionic_tubes:1>, null]]);
+}
+	#Farm Control (for Redstone Control)
+recipes.remove(<forestry:ffarm:5>);
+for i in 0 to 11 {
+	var tag as IData = { FarmBlock: i };
+	recipes.addShapeless(<forestry:ffarm:5>.withTag(tag), 
+		[<forestry:ffarm>.withTag(tag), <advgenerators:controller>]);
+}
+	#Farm Gearbox (Power Input)
+recipes.remove(<forestry:ffarm:2>);
+for i in 0 to 11 {
+	var tag as IData = { FarmBlock: i };
+	recipes.addShaped(<forestry:ffarm:2>.withTag(tag), [
+		[null, <actuallyadditions:block_breaker>, null],
+		[null, <forestry:ffarm>.withTag(tag), null],
+		[<ore:gearTin>, <ore:gearTin>, <ore:gearTin>]]);
+}
 
-//Thermionic Fabricator
+	#Farm Hatch
+recipes.remove(<forestry:ffarm:3>.withTag({FarmBlock: 0}));
+for i in 0 to 11 {
+	var tag as IData = { FarmBlock: i };
+	recipes.addShaped(<forestry:ffarm:3>.withTag(tag), [
+		[null, <contenttweaker:basicconveyor>, null],
+		[null, <forestry:ffarm>.withTag(tag), null],
+		[null, <minecraft:chest>, null]]);
+}
+	#Farm Valve
+recipes.remove(<forestry:ffarm:4>);
+for i in 0 to 11 {
+	var tag as IData = { FarmBlock: i };
+	recipes.addShapeless(<forestry:ffarm:4>.withTag(tag), [
+		<forestry:ffarm>.withTag(tag), <contenttweaker:basicvalve>]);
+}
+
+	#Sturdy Casing
+recipes.remove(<forestry:sturdy_machine>);
+recipes.addShaped(<forestry:sturdy_machine>, [
+	[<ore:plateBrass>,<ore:plateBrass>,<ore:plateBrass>],
+	[<ore:plateBrass>,<minecraft:minecart>,<ore:plateBrass>],
+	[<ore:plateBrass>,<ore:plateBrass>,<ore:plateBrass>]]);	
+	#Thermionic Fabricator
 recipes.remove(<forestry:fabricator>);
 recipes.addShaped(<forestry:fabricator>, [
 	[<ore:plateGold>,<forestry:chipsets:1>,<ore:plateGold>],
 	[<forestry:chipsets:1>,<forestry:sturdy_machine>,<forestry:chipsets:1>],
-	[<ore:plateGold>,<minecraft:chest>,<ore:plateGold>]
-	]);
-recipes.remove(<immersiveengineering:toolupgrade:10>);
-<immersiveengineering:toolupgrade:10>.displayName = "Diode";
-tf.addCast(<immersiveengineering:toolupgrade:10>*5,[
-	[null,<ore:itemRubber>,null],
-	[<ore:itemRubber>,<minecraft:redstone>,<ore:itemRubber>],
-	[<ore:itemRubber>, <ic2:cable>.withTag({type: 0 as byte, insulation: 0 as byte}),<ore:itemRubber>]
-	],<liquid:glass>*500);
+	[<ore:plateGold>,<minecraft:chest>,<ore:plateGold>]]);
 
-////////////////////
-//Carpenter Circuits 
-////////////////////
-<forestry:chipsets>.displayName = "Basic Control Board";
-<forestry:chipsets:1>.displayName = "Bronze-Plated Control Board";
-<forestry:chipsets:2>.displayName = "Iron-Plated Control Board";
-<forestry:chipsets:3>.displayName = "Advanced Control Board";
-
-//mods.tconstruct.Casting.addTableRecipe(<forestry:chipsets>, <skyresources:baseitemcomponent:6>, <liquid:tin>, 1296);
-//carp.addRecipe(QAC, [[<ore:plateIron>, <minecraft:comparator>,<ore:plateIron>],[<ore:plateIron>, <ore:materialResin>,<ore:plateIron>],[<ore:plateIron>, <minecraft:quartz_block>,<ore:plateIron>]], 20);
-
-carp.addRecipe(<contenttweaker:sub_block_holder_0:2>, [
+mods.forestry.Carpenter.addRecipe(<contenttweaker:sub_block_holder_0:2>, [
 	[null, <minecraft:clay>, null],
 	[<skyresources:techitemcomponent>, <minecraft:brick_block>, <skyresources:techitemcomponent>],
 	[null, <minecraft:sandstone>, null]
 	], 20, <liquid:lava>*100);
 
-carp.removeRecipe(<forestry:chipsets>);
-carp.addRecipe(<forestry:chipsets>*2, [
-	[<ore:ingotTin>,<ore:materialResin>,<ore:ingotTin>],
-	[<ic2:cable:4>.withTag({type: 4 as byte, insulation: 0 as byte}),<ore:plateTin>,<ic2:cable:4>.withTag({type: 4 as byte, insulation: 0 as byte})],
-	[<ore:ingotTin>,<minecraft:redstone>,<ore:ingotTin>]], 
-	20,<liquid:water>*1000);
-carp.removeRecipe(<forestry:chipsets:1>);
-carp.addRecipe(<forestry:chipsets:1>, [
-	[<ore:ingotBronze>,<ore:materialResin>,<ore:ingotBronze>],
-	[<ic2:cable>.withTag({type: 0 as byte, insulation: 0 as byte}),<forestry:chipsets>,<ic2:cable>.withTag({type: 0 as byte, insulation: 0 as byte})],
-	[<ore:ingotBronze>,<immersiveengineering:material:17>,<ore:ingotBronze>]
-	], 20, <liquid:water>*1000);
-carp.removeRecipe(<forestry:chipsets:2>);
-carp.addRecipe(<forestry:chipsets:2>, [
-	[<ore:ingotIron>,<ore:materialResin>,<ore:ingotIron>],
-	[<ic2:cable>.withTag({type: 0 as byte, insulation: 0 as byte}),<forestry:chipsets>,<ic2:cable>.withTag({type: 0 as byte, insulation: 0 as byte})],
-	[<ore:ingotIron>,<forestry:thermionic_tubes:3>,<ore:ingotIron>]
-	], 20, <liquid:water>*1000);
-carp.removeRecipe(<forestry:chipsets:3>);
-carp.addRecipe(<forestry:chipsets:3>, [
-	[<ore:ingotGold>,<ore:materialResin>,<ore:ingotGold>],
-	[<ic2:cable:2>.withTag({type: 2 as byte, insulation: 0 as byte}),<forestry:chipsets:2>,<ic2:cable:2>.withTag({type: 2 as byte, insulation: 0 as byte})],
-	[<ore:ingotGold>,<forestry:thermionic_tubes:4>,<ore:ingotGold>]
-	], 20, <liquid:water>*1000);
-
-carp.removeRecipe(<forestry:soldering_iron>);
+mods.forestry.Carpenter.removeRecipe(<forestry:soldering_iron>);
 
 //Cables
 recipes.remove(<immersiveengineering:wirecoil>);

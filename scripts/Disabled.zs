@@ -2,6 +2,52 @@
 import crafttweaker.item.IItemStack;
 import crafttweaker.item.IIngredient;
 
+/////////////////
+// Hammer Removal
+var hammerRemoved = [
+  <immersiveengineering:metal:31>,
+  <immersiveengineering:metal:33>,
+  <immersiveengineering:metal:34>,
+  <immersiveengineering:metal:35>,
+  <immersiveengineering:metal:36>,
+  <immersiveengineering:metal:37>,
+  <immersiveengineering:metal:40>
+  ] as IItemStack[];
+
+for i in hammerRemoved {
+  recipes.removeShapeless(i);}
+
+
+  #Furnace Removals
+furnace.remove(<ore:ingotLead>,         <ore:oreLead>);
+furnace.remove(<ore:ingotSilver>,       <ore:oreSilver>);
+furnace.remove(<ore:ingotGold>,         <ore:oreGold>);
+furnace.remove(<ore:ingotAbyssalnite>,  <ore:oreAbyssalnite>);
+furnace.remove(<ore:ingotCopper>,       <ore:oreCopper>);
+furnace.remove(<ore:ingotTin>,          <ore:oreTin>);
+furnace.remove(<forestry:ingot_tin>,    <forestry:resources:2>);
+furnace.remove(<crossroads:ingot_tin>,  <crossroads:ore_tin>);
+furnace.remove(<abyssalcraft:tiningot>, <ore:oreTin>);
+furnace.remove(<techreborn:ingot:13>,   <ore:oreTin>);
+furnace.remove(<fp:itemerze>,           <ore:oreTin>);
+furnace.remove(<ore:ingotIron>,         <ore:oreIron>);
+furnace.remove(<ore:ingotZinc>,         <ore:oreZinc>);
+furnace.remove(<ore:ingotAluminum>,     <ore:oreAluminum>);
+furnace.remove(<ore:ingotOsmium>,       <ore:oreOsmium>);
+furnace.remove(<ore:ingotThorium>,      <ore:oreThorium>);
+furnace.remove(<ore:ingotUranium>,      <ore:oreUranium>);
+furnace.remove(<ore:ingotUranium>,      <ore:oreYellorite>);
+furnace.remove(<ore:ingotAstralStarmetal>,      <ore:oreAstralStarmetal>);
+furnace.remove(<ore:ingotMagnesium>,      <ore:oreMagnesium>);
+furnace.remove(<ore:ingotLithium>,      <ore:oreLithium>);
+furnace.remove(<ore:ingotIron>,      <ore:oreMagnetite>);
+furnace.remove(<ore:ingotDraconium>,      <draconicevolution:draconium_ore>);
+furnace.remove(<ore:ingotCobalt>,      <ore:oreCobalt>);
+furnace.remove(<ore:ingotBoron>,      <ore:oreBoron>);
+furnace.remove(<ore:ingotArdite>,      <ore:oreArdite>);
+furnace.remove(<ore:ingotNickel>,      <ore:oreNickel>);
+furnace.remove(<ore:ingotPlatinum>,      <ore:orePlatinum>);
+
 ////////////////////////////
 //Actually Additions
 ////////////////////////////
@@ -14,6 +60,31 @@ var aaDisabled = [
 
 for item in aaDisabled{
   mods.jei.JEI.removeAndHide(item);}
+
+////////////////////////////
+//XTones
+////////////////////////////
+var xtonesdisabled = [
+	<xtones:zeta>,
+	<xtones:zeta:1>,
+	<xtones:zeta:2>,
+	<xtones:zeta:3>,
+	<xtones:zeta:4>,
+	<xtones:zeta:5>,
+	<xtones:zeta:6>,
+	<xtones:zeta:7>,
+	<xtones:zeta:8>,
+	<xtones:zeta:9>,
+	<xtones:zeta:10>,
+	<xtones:zeta:11>,
+	<xtones:zeta:13>,
+	<xtones:zeta:14>,
+	<xtones:zeta:15>
+	] as IItemStack[];
+
+for item in xtonesdisabled {
+	mods.jei.JEI.removeAndHide(item);
+}
 
 ////////////////////////////
 //Applied Energistics 2
@@ -52,14 +123,19 @@ for item in armorRedundant{
   mods.jei.JEI.removeAndHide(item);}
 
 
-////////////
-//Buildcraft
-////////////
-var buildDisabled = [
-  <buildcraftbuilders:quarry>
+
+  #Quarries
+var quarryDisabled = [
+  <buildcraftbuilders:quarry>,
+  <rftools:shape_card:2>,
+  <rftools:shape_card:3>,
+  <rftools:shape_card:4>,
+  <rftools:shape_card:5>,
+  <rftools:shape_card:6>,
+  <rftools:shape_card:7>
   ] as IItemStack[];
 
-for item in buildDisabled{
+for item in quarryDisabled{
   mods.jei.JEI.removeAndHide(item);}
 
 
@@ -123,7 +199,7 @@ var energyDisabled = [
   <fluxnetworks:fluxstorage>,
   <fluxnetworks:herculeanfluxstorage>,
   <fluxnetworks:gargantuanfluxstorage>,
-  <quantumstorage:quantum_battery>]
+  <integrateddynamics:energy_battery>]
   as IItemStack[];
 
 for item in energyDisabled{
@@ -176,7 +252,6 @@ var gearsDisabled = [
   <forestry:gear_bronze>,
   <forestry:gear_copper>,
   <forestry:gear_tin>,
-  <hammercore:iron_gear>,
   <teslacorelib:gear_wood>,
   <teslacorelib:gear_stone>,
   <teslacorelib:gear_diamond>
@@ -220,20 +295,9 @@ var ipDisabled = [
   <crossroads:ingot_copper>,
   <crossroads:ingot_tin>,
   <crossroads:block_bronze>,
-  <embers:plate_aluminum>,
-  <embers:plate_bronze>,
-  <embers:plate_nickel>,
-  <embers:plate_lead>,
-  <embers:plate_electrum>,
   <embers:plate_gold>,
   <embers:plate_silver>,
-  <embers:plate_tin>,
   <embers:plate_iron>,
-  <embers:block_bronze>,
-  <embers:block_aluminum>,
-  <embers:block_electrum>,
-  <embers:block_nickel>,
-  <embers:block_tin>,
   <embers:block_copper>,
   <embers:block_lead>,
   <embers:block_silver>,
@@ -338,6 +402,7 @@ var ipDisabled = [
   <techreborn:storage:4>,
   <techreborn:storage2:8>,
   <techreborn:storage2:9>,
+  <techreborn:storage:14>,
   <thermalfoundation:storage_alloy>]
   as IItemStack[];
 

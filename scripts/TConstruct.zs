@@ -6,9 +6,44 @@ import mods.tconstruct.Melting as tcm;
 import crafttweaker.liquid.ILiquidStack;
 import crafttweaker.item.IItemStack;
 import crafttweaker.item.IIngredient;
-  
-  #Alloying
 
+#Scope: Contains recipes of all Tinker items, as well as casting, drying, melting, and alloying 
+
+
+  #Lava
+tcm.addRecipe(<liquid:lava> * 1000, <skyresources:blazepowderblock>);
+
+  #Reinforced Stone Alloying`
+tca.addRecipe(<liquid:reinforced_stone>*432, [<liquid:stone>*144, <liquid:clay>*72, <liquid:glass>*500]);
+  #Reinforced Stone Block
+tcc.addBasinRecipe(<contenttweaker:sub_block_holder_0:2>, <minecraft:brick_block>, <liquid:reinforced_stone>, 1296, true);
+  #Reinforced Stone Ingot
+tcc.addTableRecipe(ingotReinforcedStone, <minecraft:brick>, <liquid:reinforced_stone>, 144, true);
+
+  #Glass Slime Composite and Ender Pearls
+tca.addRecipe(<liquid:glass-_slime_composite>*10, [<liquid:slime>*10, <liquid:glass>*10]);
+tcm.addRecipe(<liquid:slime> * 250, <minecraft:slime_ball>);
+tcc.addTableRecipe(<minecraft:slime_ball>, null, <liquid:slime>, 250);
+tcc.addTableRecipe(<minecraft:ender_pearl>, <tconstruct:edible:3>, <liquid:glass-_slime_composite>, 1000, true);
+
+  #Slime Balls
+mods.skyresources.combustion.removeRecipe(<tconstruct:edible:1>);
+mods.skyresources.combustion.addRecipe(<tconstruct:edible:1>, [<minecraft:slime_ball>, <botania:dye:11>*2], 350);
+mods.skyresources.combustion.removeRecipe(<tconstruct:edible:2>);
+mods.skyresources.combustion.addRecipe(<tconstruct:edible:2>, [<minecraft:slime_ball>, <botania:dye:10>*2], 350);
+
+  #Grout
+recipes.remove(<tconstruct:soil>);
+
+  #Seared Brick
+furnace.remove(<tconstruct:materials>);
+mods.skyresources.combustion.addRecipe(<tconstruct:materials>*16, [
+  <minecraft:sand>*4,<minecraft:gravel>*4,<minecraft:clay>], 400);
+mods.skyresources.combustion.addRecipe(<tconstruct:materials>*4, [
+  <minecraft:sand>,<minecraft:gravel>,<minecraft:clay_ball>], 150);
+  
+  #Seared Furnace
+recipes.remove(<tconstruct:seared_furnace_controller>);
 
 // Items
 var itemDisabled = [
@@ -72,7 +107,6 @@ var liquidDisabled = [
   <liquid:silver>,
   <liquid:gold>,
   <liquid:moltenabyssalnite>,
-  <liquid:copper>,
   <liquid:tin>,
   <liquid:iron>,
   <liquid:zinc>,
@@ -83,14 +117,13 @@ val impure = [
   <contenttweaker:impuredustsilver>,
   <contenttweaker:impuredustgold>,
   <contenttweaker:impuredustabyssalnite>,
-  <contenttweaker:impuredustcopper>,
   <contenttweaker:impuredusttin>,
   <contenttweaker:impuredustiron>,
   <contenttweaker:impuredustzinc>,
   <contenttweaker:impuredustbauxite>
   ] as IItemStack[];
 
-for i in 0 to 9 {
+for i in 0 to 8 {
   tcm.addRecipe(liquidDisabled[i]*96, impure[i]);
 }
 
@@ -233,3 +266,4 @@ var tableDisabled = [
 
 for item in tableDisabled {
   tcc.removeTableRecipe(item);}
+
