@@ -8,9 +8,9 @@ var copCableInsultedIC2 = <ic2:cable>.withTag({type: 0 as byte, insulation: 1 as
 
 	#Basic Circuit Board
 mods.forestry.Carpenter.removeRecipe(<forestry:chipsets>);
-recipes.addShaped(<forestry:chipsets>, [
+recipes.addShaped(<forestry:chipsets>*2, [
 	[tinCableInsulatedIC2, tinCableInsulatedIC2, tinCableInsulatedIC2],
-	[<ore:plateTin>, <ore:plateTin>, <ore:plateTin>],
+	[plateTin, plateTin, plateTin],
 	[tinCableInsulatedIC2, tinCableInsulatedIC2, tinCableInsulatedIC2]]);
 mods.forestry.Carpenter.addRecipe(<forestry:chipsets>, [
 	[null, null, null],
@@ -26,6 +26,16 @@ mods.forestry.Carpenter.addRecipe(<forestry:chipsets:1>, [
 	[null, null, null],
 	[<ore:plateBronze>, <ore:plateBronze>, <ore:plateBronze>],
 	[null, null, null]], 40, <liquid:menrilresin>*1000);
+	#Refined Circuit Board
+mods.forestry.Carpenter.removeRecipe(<forestry:chipsets:2>);
+recipes.addShaped(<forestry:chipsets:2>, [
+	[copCableInsultedIC2, copCableInsultedIC2, copCableInsultedIC2],
+	[<ore:plateRefinedIron>, <ore:plateRefinedIron>, <ore:plateRefinedIron>],
+	[copCableInsultedIC2, copCableInsultedIC2, copCableInsultedIC2]]);
+
+	#Intricate Circuit Board
+
+
 	#Carpenter
 recipes.remove(<forestry:carpenter>);
 recipes.addShaped(<forestry:carpenter>, [
@@ -59,14 +69,14 @@ recipes.remove(<forestry:ffarm:5>);
 for i in 0 to 11 {
 	var tag as IData = { FarmBlock: i };
 	recipes.addShapeless(<forestry:ffarm:5>.withTag(tag), 
-		[<forestry:ffarm>.withTag(tag), <advgenerators:controller>]);
+		[<forestry:ffarm>.withTag(tag), gearRedstone]);
 }
 	#Farm Gearbox (Power Input)
 recipes.remove(<forestry:ffarm:2>);
 for i in 0 to 11 {
 	var tag as IData = { FarmBlock: i };
 	recipes.addShaped(<forestry:ffarm:2>.withTag(tag), [
-		[null, <actuallyadditions:block_breaker>, null],
+		[null, <industrialforegoing:block_destroyer>, null],
 		[null, <forestry:ffarm>.withTag(tag), null],
 		[<ore:gearTin>, <ore:gearTin>, <ore:gearTin>]]);
 }

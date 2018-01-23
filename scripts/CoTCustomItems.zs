@@ -6,7 +6,7 @@ import mods.contenttweaker.Material;
 import mods.contenttweaker.Item;
 import mods.contenttweaker.Block;
 import mods.contenttweaker.PartBuilder;
-
+import mods.contenttweaker.Color;
 
   #Creating Rings
 mods.contenttweaker.MaterialSystem.getPartBuilder().setName("Ring").setPartType(mods.contenttweaker.MaterialSystem.getPartType("item")).setOreDictName("ring").build();
@@ -113,6 +113,18 @@ var copperParts = [
   ] as string[];
 copper.registerParts(copperParts);
 print("------------------Copper parts initialized----------------------");
+  #Diamond
+var diamond = MaterialSystem.getMaterialBuilder().setName("Diamond").setColor(8454143).build();
+var diamondParts = [
+  "Gear", 
+  "Rod", 
+  "Plate", 
+  "Dense_Plate", 
+  "Casing", 
+  "Ring", 
+  "Foil"] as string[];
+diamond.registerParts(diamondParts);
+print("------------------Diamond parts initialized----------------------");
   #Fiery
 var fiery = MaterialSystem.getMaterialBuilder().setName("Fiery Infused").setColor(16743700).setHasEffect(true).build();
 fiery.registerParts(parts);
@@ -121,6 +133,21 @@ print("------------------Fiery parts initialized----------------------");
 var slimeg = MaterialSystem.getMaterialBuilder().setName("Glass-Slime Composite").setColor(3342210).build();
 slimeg.registerPart("molten");
 print("------------------Glass-Slime parts initialized----------------------");
+  #Glowstone
+var glowstone = MaterialSystem.getMaterialBuilder().setName("Glowstone").setColor(15398481).build();
+var glowstoneParts = [
+  "Beam", 
+  "Gear", 
+  "Rod", 
+  "Plate", 
+  "Dense_Plate", 
+  "Crystal", 
+  "Casing", 
+  "Ring", 
+  "Rotor", 
+  "Foil"] as string[];
+glowstone.registerParts(glowstoneParts);
+print("------------------Glowstone parts initialized----------------------");
   #Gold
 var gold = MaterialSystem.getMaterialBuilder().setName("Gold").setColor(16777099).build();
 var goldParts = [
@@ -174,6 +201,23 @@ var redstoneParts = [
   ] as string[];
 redstone.registerParts(redstoneParts);
 print("------------------Redstone parts initialized----------------------");
+  #Refined Iron
+var refinedIron = MaterialSystem.getMaterialBuilder().setName("Refined Iron").setColor(14279653).build();
+var refinedIronParts = [
+  "Beam", 
+  "Gear", 
+  "Bolt", 
+  "Nugget", 
+  "Rod", 
+  "Plate", 
+  "Dense_Plate", 
+  "Crystal", 
+  "Casing", 
+  "Ring", 
+  "Rotor", 
+  "Foil"] as string[];
+refinedIron.registerParts(refinedIronParts);
+print("------------------Refined Iron parts initialized----------------------");
   #Reinforced Stone
 var reinforcedStone = MaterialSystem.getMaterialBuilder().setName("Reinforced Stone").setColor(11908533).build();
 var reinforcedStoneParts = [
